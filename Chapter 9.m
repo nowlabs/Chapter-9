@@ -6,19 +6,9 @@ int main (int argc, const char * argv[]) {
 	
 	RetainTracker *tracker = [RetainTracker new]; //1
 	[tracker retain];//2
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker retain]; //3
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker release]; //2
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker release]; //1
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker retain]; //2
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker release]; //1
-	NSLog(@"%d", [tracker retainCount]);
-	[tracker release]; //0 dealloc'ed
-	
-    [pool drain];
+	[tracker autorelease];//2
+	[tracker release];
+	NSLog(@"Releasing Pool");
+    [pool release];
     return 0;
 }
